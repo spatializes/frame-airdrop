@@ -4,9 +4,9 @@ import { Metadata } from "next";
 
 const frameMetadata = {
   "fc:frame": "vNext",
-  "fc:frame:image": "./public/next.svg",
-  "fc:frame:button:1": "Blue",
-  "fc:frame:button:2": "Green",
+  "fc:frame:image": "./next.svg",
+  "fc:frame:button:1": "$ETH",
+  "fc:frame:button:2": "$BTC",
 };
 
 export const metadata: Metadata = {
@@ -21,6 +21,7 @@ export default function Home() {
   return (
     <>
       <main>Frame Airdrop!</main>
+      <img src="/next.svg" alt="next" />
     </>
   );
 }
