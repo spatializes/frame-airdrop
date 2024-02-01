@@ -1,15 +1,23 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 import { Message, getSSLHubRpcClient } from "@farcaster/hub-nodejs";
+import {
+  convertToFrame,
+  FrameRequest,
+  FrameValidationResponse,
+} from "../../types/farcasterTypes";
 
 const POST_URL = "https://frame-airdrop.vercel.app/api/frame";
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest, res: NextResponse) {
+  console.log("POST received at /api/frame");
+
   const HUB_URL = process.env["HUB_URL"] || "nemes.farcaster.xyz:2283";
   const client = getSSLHubRpcClient(HUB_URL);
   let validatedMessage: Message | undefined = undefined;
   try {
+    const body: FrameRequest = await req.json();
     const frameMessage = Message.decode(
-      Buffer.from(req.body?.trustedData?.messageBytes || "", "hex")
+      Buffer.from(body?.trustedData?.messageBytes || "", "hex")
     );
     const result = await client.validateMessage(frameMessage);
     if (result.isOk() && result.value.valid) {
@@ -20,10 +28,10 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
     let urlBuffer = validatedMessage?.data?.frameActionBody?.url || [];
     const urlString = Buffer.from(urlBuffer).toString("utf-8");
     if (!urlString.startsWith(process.env["HOST"] || "")) {
-      return res.status(400).send(`Invalid frame url: ${urlBuffer}`);
+      throw new Error(`Invalid frame url: ${urlBuffer}`);
     }
   } catch (e) {
-    return res.status(400).send(`Failed to validate message: ${e}`);
+    throw new Error(`Failed to validate message: ${e}`);
   }
 
   const buttonId = validatedMessage?.data?.frameActionBody?.buttonIndex || 0;
