@@ -1,12 +1,14 @@
-import Image from "next/image";
-import styles from "./page.module.css";
 import { Metadata } from "next";
+
+export const PUBLIC_URL = "https://frame-airdrop.vercel.app/";
+export const POST_URL = PUBLIC_URL + "/api/frame";
 
 const frameMetadata = {
   "fc:frame": "vNext",
   "fc:frame:image": "https://blocklive.io/util/logo.png",
   "fc:frame:button:1": "$ETH",
   "fc:frame:button:2": "$BTC",
+  "fc:frame:post_url": POST_URL,
 };
 
 export const metadata: Metadata = {
@@ -21,8 +23,6 @@ export default function Home() {
   return (
     <>
       <main>Frame Airdrop!</main>
-      <img src="https://blocklive.io/util/logo.png" alt="next" />
-      <img src="/base.jpg" alt="next" />
     </>
   );
 }
