@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Message, getSSLHubRpcClient } from "@farcaster/hub-nodejs";
-import {
-  convertToFrame,
-  FrameRequest,
-  FrameValidationResponse,
-} from "../../types/farcasterTypes";
+import { FrameRequest } from "../../types/farcasterTypes";
 
 const POST_URL = "https://frame-airdrop.vercel.app/api/frame";
 
@@ -51,3 +47,5 @@ export async function POST(req: NextRequest, res: NextResponse) {
   html += `${imageHtml}${buttonsHtml}${postUrlHtml}</head></html>`;
   return new Response(html, { headers: { "Content-Type": "text/html" } });
 }
+
+export const dynamic = "force-dynamic";
