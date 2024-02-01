@@ -4,7 +4,7 @@ import { Metadata } from "next";
 
 const frameMetadata = {
   "fc:frame": "vNext",
-  "fc:frame:image": "./next.svg",
+  "fc:frame:image": "https://blocklive.io/util/logo.png",
   "fc:frame:button:1": "$ETH",
   "fc:frame:button:2": "$BTC",
 };
@@ -21,7 +21,8 @@ export default function Home() {
   return (
     <>
       <main>Frame Airdrop!</main>
-      <img src="/next.svg" alt="next" />
+      <img src="https://blocklive.io/util/logo.png" alt="next" />
+      <img src="/base.jpg" alt="next" />
     </>
   );
 }
