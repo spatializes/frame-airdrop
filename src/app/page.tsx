@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 
-export const PUBLIC_URL = "https://frame-airdrop.vercel.app/";
-export const POST_URL = PUBLIC_URL + "/api/frame";
+const POST_URL = "https://frame-airdrop.vercel.app/api/frame";
 
 const frameMetadata = {
   "fc:frame": "vNext",
