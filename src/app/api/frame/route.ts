@@ -34,17 +34,18 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const fid = validatedMessage?.data?.fid || 0;
   console.log("bf", buttonId, fid);
 
-  const image =
-    "https://pbs.twimg.com/profile_images/1625241927636619264/N-XZiXcx_400x400.png";
+  const NEW_IMAGE_URLimage =
+    "https://assets.blocklive.io/events/2bfb5de2-cd38-49d5-bb3b-1834dfc66380/58662d9d-303b-4c72-b3cd-92207ca8b91b_dall_e_2024_01_28_23_08_18___design_a_banner_image__size_936px_x_468px__that_looks_like_an_entrance_ticket_to_an_event_for_the__frames__feature_on_a_social_media_platform_resembli.png";
 
-  const imageHtml = `<meta property="fc:frame:image" content="${image}" />`;
-  const buttonsHtml =
-    `<meta property="fc:frame:button:1" content="$ETH" />` +
-    `<meta property="fc:frame:button:2" content="$BTC" />`;
-  const postUrlHtml = `<meta property="fc:frame:post_url" content="${POST_URL}" />`;
   let html =
-    '<!DOCTYPE html><html><head><meta property="fc:frame" content="vNext" />';
-  html += `${imageHtml}${buttonsHtml}${postUrlHtml}</head></html>`;
+    `<!DOCTYPE html><html><head>` +
+    `<meta property="fc:frame" content="vNext" />` +
+    `<meta property="fc:frame:image" content="${NEW_IMAGE_URLimage}" />` +
+    `<meta property="fc:frame:button:1" content="$DOGE" />` +
+    `<meta property="fc:frame:button:2" content="$SOL" />` +
+    `<meta property="fc:frame:post_url" content="${POST_URL}" />` +
+    `</head></html>`;
+
   return new Response(html, { headers: { "Content-Type": "text/html" } });
 }
 
