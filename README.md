@@ -1,5 +1,7 @@
 # Frame Airdrop
 
+This is a simple Farcaster Frame that will update its image and button layout on button click.
+
 
 ## Getting Started
 
@@ -18,7 +20,7 @@ Modify the initial Frame load: src/app/page.tsx
 
 Modify the server response: src/app/api/frame/route.ts
 
-
+## Resources
 
 See https://www.spatializes.com/p/hacking-on-farcaster-frames for more details.
 
